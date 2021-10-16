@@ -1,3 +1,13 @@
+:root {
+  --black: #150605;
+  --red: #EA453C;
+  --pink: #F47B6E;
+  --light-blue: #EFFBFE;
+  --blue: #63D5DA;
+  --green: #04AA6D;
+  --white: #FFFFFF;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -19,11 +29,12 @@ code {
 }
 
 .league-table th {
-  background-color: #04AA6D;
-  color: white;
+  background-color: var(--blue);
+  color: var(--white);
+  margin-top: 10px;
 }
 
-.league-table th:hover {background-color: salmon;}
+.league-table th:hover {background-color: var(--pink);}
 
 .league-table th, td {
   padding: 10px;
@@ -33,4 +44,27 @@ code {
 
 .league-table tr:nth-child(even) {
   background-color: #ddd;
+}
+
+.tablink {
+  background-color: var(--green);
+  color: var(--white);
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 15px;
+  width: 20%;
+  height: 60px;
+}
+.tablink:hover {
+  background-color: var(--pink);
+}
+
+.stat-area {
+  display: inline-table;
+  margin-top: 20px;
+  color: var(--green);
+  width: 100%;
 }

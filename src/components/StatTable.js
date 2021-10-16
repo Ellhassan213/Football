@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 
-const LeagueTable = (props) => {
-  const [byRank, setByRank] = useState(false);
-  const [byTeam, setByTeam] = useState(true);
+const StatTable = (props) => {
+  const [isRankAscending, setByRank] = useState(false);
+  const [isTeamAscending, setByTeam] = useState(true);
 
   const toggleByRank = () => {
     setByRank((prev) => !prev);
-    props.sortByRank(byRank);
+    props.sortByRank(isRankAscending);
   };
 
   const toggleByTeam = () => {
     setByTeam((prev) => !prev);
-    props.sortByTeam(byTeam);
+    props.sortByTeam(isTeamAscending);
   };
 
-  const leagueTable = (
+  const statTable = (
     <table className="league-table">
       <thead>
         <tr>
@@ -35,7 +35,7 @@ const LeagueTable = (props) => {
     </table>
   );
 
-  return <>{leagueTable}</>;
+  return <>{statTable}</>;
 };
 
-export default LeagueTable;
+export default StatTable;

@@ -64,7 +64,21 @@ code {
 
 .stat-area {
   display: inline-table;
-  margin-top: 20px;
+  margin: 15px 0 0 10px;
   color: var(--green);
   width: 100%;
+}
+
+.search-bar-input {
+  margin: 10px 0 0 10px;
+  height: 30px;
+}
+
+.search-submit-btn {
+  margin: 10px 0 0 10px;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 3px;
+  height: 35px;
+  width: 70px;
 }

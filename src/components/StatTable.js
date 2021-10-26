@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../Context";
 
 const StatTable = (props) => {
+  const { sortByRank, sortByTeam } = useContext(Context)
   const [isRankAscending, setByRank] = useState(false);
   const [isTeamAscending, setByTeam] = useState(true);
 
   const toggleByRank = () => {
     setByRank((prev) => !prev);
-    props.sortByRank(isRankAscending);
+    sortByRank(isRankAscending);
   };
 
   const toggleByTeam = () => {
     setByTeam((prev) => !prev);
-    props.sortByTeam(isTeamAscending);
+    sortByTeam(isTeamAscending);
   };
 
   const statTable = (

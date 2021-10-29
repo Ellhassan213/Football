@@ -7,13 +7,12 @@ const Context = React.createContext()
 const Provider = ({children}) => {
   const SEASON = '2021'
   const [leagueStandings, setLeagueStandings] = useState([]);
-
   const [standingsPL, setStandingsPL] = useState([]);
   const [standingsLaliga, setStandingsLaliga] = useState([]);
   const [standingsBundesliga, setStandingsBundesliga] = useState([]);
   const [standingsSerieA, setStandingsSerieA] = useState([]);
   const [standingsLigue1, setStandingsLigue1] = useState([]);
-
+  const [currentStanding, setCurrentStanding] = useState([]);
 
   const leagueIDs = {
     premierLeague: '39',
@@ -32,18 +31,18 @@ const Provider = ({children}) => {
         "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
         "x-rapidapi-key": "e9ba380ff6msh8a2e587ba3fdbabp128eb0jsn2945efb5edb5",
       },
-    };
+  };
   
-    axios.request(options)
-        .then(res => {
-            const response = res.data["response"]
-            const {league} = response[0]
-            // const {name} = league
-            const standings = league["standings"][0]
+  axios.request(options)
+    .then(res => {
+      const response = res.data["response"]
+      const {league} = response[0]
+      // const {name} = league
+      const standings = league["standings"][0]
 
-            setStandings(standings)
-        })
-        .catch(error => console.log("Error: ", error))
+      setStandings(standings)
+    })
+    .catch(error => console.log("Error: ", error))
   }
 
   const sortByRank = (isRankAscending) => {
@@ -83,8 +82,12 @@ const Provider = ({children}) => {
     
     // Default
     fetchLeagueStandings(leagueIDs.premierLeague, setLeagueStandings)
+
   }, [leagueIDs.bundesliga, leagueIDs.laLiga, leagueIDs.ligue1, leagueIDs.premierLeague, leagueIDs.serieA])
 
+  useEffect(() => {
+    setCurrentStanding(standingsPL)
+  }, [standingsPL])
 
   return (
     <Context.Provider value={{
@@ -92,6 +95,7 @@ const Provider = ({children}) => {
         leagueStandings, standingsPL,
         standingsSerieA, standingsBundesliga,
         standingsLaliga, standingsLigue1,
+        currentStanding, setCurrentStanding,
         sortByRank, sortByTeam,
         setLeagueStandings
       }}>

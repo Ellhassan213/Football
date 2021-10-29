@@ -5,10 +5,7 @@ const SearchBar = () => {
   const { currentStanding, setLeagueStandings } = useContext(Context)
   const [searchInput, setSearchInput] = useState('')
 
-  const handleChange = (event) => {
-    const { value } = event.target
-    setSearchInput(value)
-
+  const search = (value) => {
     setTimeout(() => {
       let newStandings = []
       currentStanding.map(obj => {
@@ -24,6 +21,12 @@ const SearchBar = () => {
       newStandings.length > 0 ? setLeagueStandings(newStandings)
       : console.log("Search not found")  
     }, 500);
+  }
+
+  const handleChange = (event) => {
+    const { value } = event.target
+    setSearchInput(value)
+    search(value)
   }
 
   return (

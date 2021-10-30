@@ -4,9 +4,12 @@ import { Context } from '../Context'
 const SearchBar = () => {
   const { currentStanding, setLeagueStandings } = useContext(Context)
   const [searchInput, setSearchInput] = useState('')
+  let timerId
 
   const search = (value) => {
-    setTimeout(() => {
+    clearTimeout(timerId)
+
+    timerId = setTimeout(() => {
       let newStandings = []
       currentStanding.map(obj => {
         const inTeamName = obj.team.name.toLowerCase().includes(value)
@@ -19,7 +22,7 @@ const SearchBar = () => {
       })
       // newStandings.length > 0 && setLeagueStandings(newStandings)
       newStandings.length > 0 ? setLeagueStandings(newStandings)
-      : console.log("Search not found")  
+      : setLeagueStandings([])
     }, 500);
   }
 
